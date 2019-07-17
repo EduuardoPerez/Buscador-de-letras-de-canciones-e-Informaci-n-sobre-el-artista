@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function Formulario(){
+function Formulario({consultarAPILetra}){
 
   const[busqueda, agregarBusqueda] = useState({
     artista: '',
@@ -15,11 +15,21 @@ function Formulario(){
     })
   }
 
+  // Cuando hacemos submit al form
+  const enviarInformacion = e => {
+    e.preventDefault();
+
+    consultarAPILetra(busqueda);
+  }
+
   return (
     <div className="bg-info">
       <div className="container">
         <div className="row">
-          <form className="col card text-white bg-transparent  mb-5 pt-5 pb-2">
+          <form
+            onSubmit={enviarInformacion}
+            className="col card text-white bg-transparent  mb-5 pt-5 pb-2"
+            >
             <fieldset>
               <legend className="text-center">Buscador de letras de canciones</legend>
               <div className="row">
