@@ -1,6 +1,20 @@
 import React, {useState} from 'react';
 
 function Formulario(){
+
+  const[busqueda, agregarBusqueda] = useState({
+    artista: '',
+    cancion: ''
+  })
+
+  // Función para actualizar el state de los inputs
+  const actualizarState = e => {
+    agregarBusqueda({
+      ...busqueda,
+      [e.target.name]: e.target.value
+    })
+  }
+
   return (
     <div className="bg-info">
       <div className="container">
@@ -16,7 +30,8 @@ function Formulario(){
                       type="text" 
                       className="form-control" 
                       name="artista" 
-                      placeholder="Nombre Artista" 
+                      placeholder="Nombre del artista"
+                      onChange={actualizarState}
                       required
                     />
                   </div>
@@ -28,7 +43,8 @@ function Formulario(){
                       type="text" 
                       className="form-control" 
                       name="cancion" 
-                      placeholder="Nombre Canción" 
+                      placeholder="Nombre de la canción"
+                      onChange={actualizarState}
                       required
                     />
                   </div>
