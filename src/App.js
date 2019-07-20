@@ -1,7 +1,8 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import axios from 'axios';
 import Formulario from './componentes/Formulario';
 import Cancion from './componentes/Cancion';
+import Informacion from './componentes/Informacion';
+import axios from 'axios';
 
 function App() {
 
@@ -33,7 +34,9 @@ function App() {
   }
 
   useEffect(() => {
-    consultarAPIInfo();
+    if(artista){
+      consultarAPIInfo();
+    }
   },[artista]); // Cuando haya un artista o cuando se hagan cambios en el
                 // state artista, se ejecuta el useEffect
 
@@ -45,7 +48,9 @@ function App() {
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
-
+            <Informacion
+              info={info}
+            />
           </div>
           <div className="col-md-6">
             <Cancion 
