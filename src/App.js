@@ -18,9 +18,24 @@ function App() {
     // Consultar la API
     const resultado = await axios(url);
 
+    // Almacenar el artista que se buscó
+    agregarArtista(artista);
+
     // Almacenar la letra en el state
     agregarLetra(resultado.data.lyrics);
   }
+
+  // Método para consultar la API de información
+  const consultarAPIInfo = async () => {
+    const url = `https://theaudiodb.com/api/v1/json/1/search.php?s=${artista}`
+    const resultado = await axios(url);
+    agregarInfo(resultado.data.artists[0]);
+  }
+
+  useEffect(() => {
+    consultarAPIInfo();
+  },[artista]); // Cuando haya un artista o cuando se hagan cambios en el
+                // state artista, se ejecuta el useEffect
 
   return (
     <Fragment>
